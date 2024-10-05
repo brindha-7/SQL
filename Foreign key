@@ -1,0 +1,44 @@
+//NORMALIZATION:
+
+the table which is not a normalized it cause ,these errors
+
+Redundancy (repeat data) 
+Inconsistency (not a same data)
+Disk space
+
+to make the table normalized 
+ we need to create a separate table for the data which are repeated in the database.
+ Throughout the process the data does not change
+ The usage of memory is also reduced 
+
+Every table should contain primary key
+Only parent class contain foreign key
+Foreign Key- Can contain duplicate, Accept null,
+values only from primary key column form parent class //
+CREATE table DeTable(Did int PRIMARY KEY identity(1,1),
+                       DName varchar(30),
+                       DHead varchar(30), 
+                       DPhone varchar(30))
+                       
+create table Emtables (EId int primary key  identity(1,1),
+                        EName varchar(30) ,
+                        EAge int  ,
+                        ELocation varchar(30),
+                       Did int FOREIGN key references DeTable(Did))
+  SELECT*FROM DeTable
+  SELECT*from Emtables
+  
+  insert into DeTable(DName,DHead,DPhone) values ('.Net','Sam','9874561230'),('Java','Tom','1236547890')
+  ,('PHP','John','9874561249')
+  insert into (did,dname,dhead,dphone)values ('android','peter','236977451')
+  SELECT*FROM DeTable
+INSERT into EmTables(Ename,EAge,Elocation,Did) VALUES('Ashok',23,'Erode',1)
+Select*FROM Emtables
+insert into Emtables(EName,EAge,ELocation,Did) values ('Kumar',22,'Chennai',2),
+('Siva',27,'Erode'1),
+('Sita',29,'Chennai',3),
+('Raja',22,'Erode',1),
+('Ram',23,'Chennai',2),
+('Priya',24,'Bangalore',2)
+SELECT * FROM Emtable join DepTable on EmTables.Did = Detable.Did
+
