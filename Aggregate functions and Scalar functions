@@ -1,0 +1,89 @@
+to specify the particular column (column filter)
+select column name from table name
+ex: select EmpName, DeptName from Employee
+
+particular data (row filter)
+select column name from table name where column name = value
+
+to make them alphabetic order
+select column name from table name where column name = value order by column Name
+
+to remove duplicate
+select distinct (columnName) from TableName
+
+
+ Aggregate function-(Sum,max,Min,Avg,Count)
+
+  definition
+
+  input-entire column
+  output-one output
+
+to count
+select count(Column Name) as the statement to be print from tableName
+
+ex:select count(EmpId) as Total employee from employee
+
+Scalar function-(len, upper, lower, round off,...)
+
+  input-  entire column
+  output- output for each row 
+
+Group By(keyword)
+   group up the data
+   select column name , count(column name) from table name group by column name
+
+WHERE CLASS 
+ where use panna -real database la iruthu vara output 
+
+HAVING CLASS
+ having use panna -user aa create panna table la iruthu vara output 
+ 
+example:
+ select emplocation ,sum(empsalary) from employee group by emplocation  having <50000
+create Database OrganizationDBtest
+
+use OrganizationDBtest
+
+create table Employee(
+EmpId int,EmpName varchar(30),EmpAge int,EmpGender varchar(30),
+EmpSalary int,EmpExperience int,EmpLocation varchar(30),
+DeptName varchar(30),DeptHead varchar(30),DeptPhone varchar(30))
+
+
+insert into Employee(EmpId,EmpName,EmpAge,EmpGender,EmpSalary,EmpExperience,
+EmpLocation,DeptName,DeptHead,DeptPhone) values
+(1,'Ashok',20,'Male',23000,2,'Chennai','Finance', 'Sam',9865737111),
+(2,'Shilpa',25,'Female',27000,3,'Bangalore','Marketing', 'Peter',9865737222),
+(3,'Kumar',21,'Male',25000,2,'Delhi','Human Resources', 'John',9865737333),
+(4,'Siva',30,'Male',50000,5,'Delhi','Finance', 'Sam',9865737444),
+(5,'Radha',22,'Female',27000,2,'Bangalore','Human Resources', 'John',9865737555),
+(6,'Tony',18,'Male',22000,1,'Chennai','Finance', 'Sam',9865737666),
+(7,'Priya',30,'Female',45000,4,'Pune','Marketing', 'Peter',9865737777),
+(8,'Kamal',45,'Male',65000,6,'Chennai','Human Resources', 'John',9865737888),
+(9,'Rajini',50,'Male',70000,7,'Delhi','Marketing', 'Peter',9865737999),
+(10,'Sita',30,'Female',36000,3,'Pune','Human Resources', 'John',9865737110)
+
+select * from Employee
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
