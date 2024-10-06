@@ -1,0 +1,270 @@
+create database SouthIndianMovieDB
+
+use SouthIndianMovieDB;
+
+CREATE TABLE Actors (
+ActorID INT PRIMARY KEY,
+Name VARCHAR(255),
+DateOfBirth DATE
+);
+
+
+CREATE TABLE Directors (
+DirectorID INT PRIMARY KEY,
+Name VARCHAR(255),
+DateOfBirth DATE
+);
+
+CREATE TABLE Movies (
+MovieID INT PRIMARY KEY,
+Title VARCHAR(255),
+ReleaseYear INT,
+DirectorID INT FOREIGN KEY REFERENCES Directors(DirectorID)
+);
+
+
+
+CREATE TABLE Cast (
+CastID INT PRIMARY KEY,
+MovieID INT FOREIGN KEY REFERENCES Movies(MovieID),
+ActorID INT FOREIGN KEY REFERENCES Actors(ActorID),
+Role VARCHAR(255)
+);
+
+
+
+
+
+
+CREATE TABLE Genres (
+GenreID INT PRIMARY KEY,
+Name VARCHAR(255)
+);
+
+CREATE TABLE Movie_Genres (
+MovieID INT FOREIGN KEY REFERENCES Movies(MovieID),
+GenreID INT FOREIGN KEY REFERENCES Genres(GenreID)
+);
+
+CREATE TABLE Awards (
+AwardID INT PRIMARY KEY,
+MovieID INT FOREIGN KEY REFERENCES Movies(MovieID),
+AwardName VARCHAR(255),
+Year INT
+);
+
+
+INSERT INTO Movies (MovieID, Title, ReleaseYear, DirectorID)
+VALUES
+(1, 'Baahubali', 2015, 1),
+(2, 'Kabali', 2016, 2),
+(3, 'Thuppakki', 2012, 3),
+(4, 'Viswasam', 2019, 4),
+(5, 'Mersal', 2017, 5),
+(6, 'Vivegam', 2017, 4),
+(7, 'Mankatha', 2011, 6),
+(8, 'Thani Oruvan', 2015, 7),
+(9, 'Raja Rani', 2013, 5),
+(10, 'Aranmanai', 2014, 8);
+
+
+INSERT INTO Actors (ActorID, Name, DateOfBirth)
+VALUES
+(1, 'Prabhas', '1979-10-23'),
+(2, 'Rajinikanth', '1950-12-12'),
+(3, 'Vijay', '1974-06-22'),
+(4, 'Ajith Kumar', '1971-05-01'),
+(5, 'Arya', '1980-12-11'),
+(6, 'Jayam Ravi', '1980-09-10'),
+(7, 'Sundar C.', '1968-07-23'),
+(8, 'Anushka Shetty', '1981-11-07'),
+(9, 'Nayanthara', '1984-11-18'),
+(10, 'Hansika Motwani', '1991-08-09'),
+(11,'Samantha','1987-04-28'),
+(12,'Kajal Agarwal','1985-06-19'),
+(13,'Radhika Apte','1985-09-07'),
+(14,'Trisha','1983-05-04'),
+(15,'Jai','1980-11-11');
+
+
+INSERT INTO Cast (CastID, MovieID, ActorID, Role)
+VALUES
+(1, 1, 1, 'Sivudu'),
+(2, 1, 8, 'Avanthika'),
+(3, 2, 2, 'Kabali'),
+(4, 2, 13, 'Kumudhavalli'),
+(5, 3, 3, 'Jagadish'),
+(6, 3, 13, 'Nisha'),
+(7, 4, 4, 'Thooku Durai'),
+(8, 4, 9, 'Niranjana'),
+(9, 5, 3, 'Vetrimaaran'),
+(10, 5, 11, 'Tara'),
+(11,5,12,'Anupallavi'),
+(12,6,4,'AK'),
+(13,6,12,'Yazhini'),
+(14,7,6,'Vinayak'),
+(15,7,14,'Sanjana'),
+(16, 8, 6, 'Mithran'),
+(17, 8, 9, 'Mahima'),
+(18, 9, 5, 'John'),
+(19, 9, 9, 'Regina'),
+(20, 10, 7, 'Ravi'),
+(21, 10, 10, 'Selvi'),
+(22,9,15,'Surya');
+
+
+INSERT INTO Directors (DirectorID, Name, DateOfBirth)
+VALUES
+(1, 'S.S. Rajamouli', '1973-10-10'),
+(2, 'Pa. Ranjith', '1974-06-22'),
+(3, 'A.R. Murugadoss', '1964-09-25'),
+(4, 'Siva', '1977-10-12'),
+(5, 'Atlee', '1986-09-21'),
+(6, 'Venkat Prabhu', '1975-11-07'),
+(7, 'M. Raja', '1963-06-26'),
+(8, 'Sundar C.', '1968-07-23');
+
+
+INSERT INTO Genres (GenreID, Name)
+VALUES
+(1, 'Action'),
+(2, 'Comedy'),
+(3, 'Drama'),
+(4, 'Romance'),
+(5, 'Thriller'),
+(6, 'Horror');
+
+
+
+INSERT INTO Movie_Genres (MovieID, GenreID)
+VALUES
+(1, 1),
+(1, 3),
+(2, 1),
+(2, 4),
+(3, 2),
+(3, 5),
+(4, 1),
+(4, 3),
+(5, 2),
+(5, 4),
+(6, 1),
+(6, 5),
+(7, 2),
+(7, 5),
+(8, 1),
+(8, 3),
+(9, 2),
+(9, 4),
+(10, 2),
+(10, 6);
+
+
+
+INSERT INTO Awards (AwardID, MovieID, AwardName, Year)
+VALUES
+(1, 1, 'National Film Award for Best Feature Film', 2015),
+(2, 2, 'Filmfare Award for Best Actor', 2016),
+(3, 3, 'Vijay Award for Best Director', 2012),
+(4, 4, 'SIIMA Award for Best Film', 2019),
+(5, 5, 'Edison Award for Best Actor', 2017),
+(6, 6, 'Vijay Award for Best Music Director', 2017),
+(7, 7, 'Vijay Award for Best Actor', 2011),
+(8, 8, 'SIIMA Award for Best Director', 2015),
+(9, 9, 'Edison Award for Best Actress', 2013),
+(10, 10, 'National Film Award for Best Special Effects', 2014);
+
+
+SELECT * FROM Movies;
+
+SELECT * FROM Actors;
+
+SELECT * FROM [Cast];
+
+SELECT * FROM Directors;
+
+SELECT * FROM Genres;
+
+SELECT * FROM Movie_Genres;
+
+SELECT * FROM Awards;
+
+//three table//
+Select Name, Title from Actors join Cast On Actors. ActorID join Movies on
+Cast. MovieID = MovieID =Movies. MovieID
+//four table//
+select Name,Role,Title,Directors.Name from Actors join cast on Actors. ActorID =cast. ActorID
+join Movies on Movies.movieID=cast.movieID
+//subquery SUBQUERY
+    Query with the query is sub query 
+         inner query 's output is the input of outer's query//
+
+
+select Name from Directors where DirectorID in(select DirectorID .movies where name="thuppaki"
+
+
+SELECT M.Title, D.Name AS DirectorName
+FROM Movies M
+JOIN Directors D ON M.DirectorID = D.DirectorID;
+
+
+SELECT M.Title, G.Name AS GenreName
+FROM Movies M
+JOIN Movie_Genres MG ON M.MovieID = MG.MovieID
+JOIN Genres G ON MG.GenreID = G.GenreID;
+
+
+SELECT M.Title, A.Name AS ActorName
+FROM Movies M
+JOIN Cast C ON M.MovieID = C.MovieID
+JOIN Actors A ON C.ActorID = A.ActorID;
+
+--Join Query Questions : 
+--*************************
+
+1. Select all movies and their corresponding directors.
+2. Select all actors and their corresponding movies.
+3. Select all movies and their corresponding genres.
+4. Select all actors and their corresponding movie genres.
+5. Select all movies released before 2010.
+6. Select all movies directed by a specific director.
+7. Select all actors who have acted in more than 2 movies.
+8. Select all movies with a specific actor.
+9. Select all genres and their corresponding movies.
+10. Select all movies with a specific genre.
+11. Select all directors and their corresponding movies.
+12. Select all movies released after 2015.
+13. Select all actors who have acted in movies with a specific genre.
+14. Select all movies with a specific actor and genre.
+15. Select all directors who have directed movies with a specific genre.
+16. Select all movies with a specific director and genre.
+17. Select all actors who have acted in movies released before 2010.
+18. Select all movies with a specific actor and released after 2015.
+19. Select all directors who have directed movies released before 2010.
+20. Select all movies with a specific director and released after 2015.
+
+
+
+join Query Answers : 
+***********************
+
+1. SELECT M.Title, D.Name AS DirectorName
+FROM Movies M
+JOIN Directors D ON M.DirectorID = D.DirectorID;
+
+2. SELECT A.Name AS ActorName, M.Title
+FROM Actors A
+JOIN Cast C ON A.ActorID = C.ActorID
+JOIN Movies M ON C.MovieID = M.MovieID;
+
+3. SELECT M.Title, G.Name AS GenreName
+FROM Movies M
+JOIN Movie_Genres MG ON M.MovieID = MG.MovieID
+JOIN Genres G ON MG.GenreID = G.GenreID;
+
+4. SELECT A.Name AS ActorName, G.Name AS GenreName
+FROM Actors A
+JOIN Cast C ON A.ActorID = C.ActorID
+JOIN Movies M ON C.MovieID = M.MovieID
+JOIN Movie_Genres MG ON M.MovieID = MG.MovieID
+JOIN Genres G ON MG.GenreID = G.GenreID;
